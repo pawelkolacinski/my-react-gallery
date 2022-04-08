@@ -4,6 +4,9 @@ import { useState } from 'react'
 export default function Gallery({items}) {
     const [selectedItem, setSelectedItem] = useState(null)
     console.log('Active  state ',selectedItem)
+    items = items.map((i,index) => { return {...i, id: index}})
+
+    
 
     const changeSlide = (step) => {
         
@@ -20,7 +23,26 @@ export default function Gallery({items}) {
         if(e.key==='Escape') setSelectedItem(null)
     }
 
-    items = items.map((i,index) => { return {...i, id: index}})
+    const resizePopupImage = e => {
+        const image = e.target
+        const parent = image.closest('.item-popup-content')
+
+        
+
+
+        const factor = image.naturalWidth/image.naturalHeight
+
+        if(factor>=1) {
+            parent.style.width = '80vw';
+            parent.style.height = (80/factor)+'vw'
+        } else {
+            parent.style.height = '80vh';
+            parent.style.width = (80*factor)+'vh'
+        }
+
+        
+        
+    }
 
 
   return (
@@ -37,7 +59,12 @@ export default function Gallery({items}) {
                         className="image"
                         src={item.thumb?item.thumb:item.url}
                         
-                        loading="lazy" 
+                        loading="lazy"
+                        onLoad={(e) => {
+                            const image = e.target
+                            image.classList.add('loaded')
+                            
+                        }} 
                         ></img>
                     </article>
                 ))}
@@ -49,13 +76,14 @@ export default function Gallery({items}) {
             {selectedItem!==null && (
             <div className="item-popup" onClick={(e)=> { if(!e.target.classList.contains('arrow')) setSelectedItem(null);}} onKeyDown={handleKeyPress} tabIndex="0">
                 <div className="item-popup-content">
-                    <img className="image-popup" src={items[selectedItem].url} />
+                    <img className="image-popup" src={items[selectedItem].url} onLoad={resizePopupImage} />
                     <div className='title'>
-                        <span className="arrow left" onClick={(e)=> { changeSlide(-1)}} >&#x3c;</span>
+                        
                         {items[selectedItem].title ? items[selectedItem].title : ''}
-                        <span className="arrow right" onClick={(e)=> { changeSlide(1)}} >&#x3e;</span>
+                        
                     </div>
-                    
+                    <span className="arrow left" onClick={(e)=> { changeSlide(-1)}} >&#x3c;</span>
+                    <span className="arrow right" onClick={(e)=> { changeSlide(1)}} >&#x3e;</span>
                     
                 </div>
             
