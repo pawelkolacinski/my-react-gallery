@@ -1,6 +1,39 @@
+:root{
+    --gallery-columns:4
+}
+
+
+
+@media (max-width:1200px){
+    :root{
+        --gallery-columns:3
+    }
+}
+
+
+@media (max-width:800px){
+    :root{
+        --gallery-columns:2
+    }
+}
+
+
+@media (max-width:400px){
+    :root{
+        --gallery-columns:1
+    }
+}
+
+
+:root{
+    --gallery-item-width:calc(100vw/(var(--gallery-columns)));
+    --gallery-item-height:var(--gallery-item-width);
+}
+
+
 .react-gallery .items{
     display:grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(var(--gallery-columns),1fr);
     
     max-width:100vw;
     
@@ -9,8 +42,9 @@
 }
 
 .react-gallery .item{
-    width:100%;
-    height:300px;
+    width:var(--gallery-item-width);
+    height:var(--gallery-item-height);
+    cursor:pointer;
     
 
 }
@@ -28,29 +62,7 @@
 }
 
 
-@media (min-width:1280px){
-    .react-gallery .items{
-        grid-template-columns: repeat(4,1fr);
-        
-        
-    }
-}
 
-
-@media (max-width:800px){
-    .react-gallery .items{
-        grid-template-columns: repeat(2,1fr);
-        
-    }
-}
-
-
-@media (max-width:400px){
-    .react-gallery .items{
-        grid-template-columns: repeat(1,1fr);
-        
-    }
-}
 
 
 /* image popup*/
@@ -61,6 +73,7 @@
     top:0;
     width:100vw;
     height:100vh;
+    background-color: rgba(0,0,0,0.5);
 
     display:flex;
     justify-content: center;
@@ -70,9 +83,37 @@
 .react-gallery .item-popup-content{
     
     display:flex;
-    width:40%;
+    max-width: 80%;
+    max-height:80%;
+    position:relative;
+    
 }
 
 .react-gallery .image-popup{
     width:100%;
+    object-fit: contain;
+    
 }
+
+
+.react-gallery .title{
+    position:absolute;
+    color:white;
+    bottom: 17px;
+
+    text-align: center;
+    width: 100%;
+    font-size:1.5rem;
+    text-transform: capitalize;
+}
+
+
+/* arrows for slider navigation */
+
+.arrow{
+    margin:20px;
+    cursor:pointer;
+    font-size:2rem;
+
+}
+
