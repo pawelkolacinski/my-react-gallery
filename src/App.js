@@ -19,7 +19,24 @@ function App() {
     },
     {
       url: 'https://photos.phpdoktor.pl/user/pages/01.home/drzewo_pozerane.jpg'
-    }]
+    },
+    {
+      url: 'https://photos.phpdoktor.pl/user/pages/01.home/dzwigi-smoki.jpg'
+    },
+    {
+      url: 'https://photos.phpdoktor.pl/user/pages/01.home/waly-od-odry.jpg'
+    },
+    {
+      url: 'https://photos.phpdoktor.pl/user/pages/01.home/berlin_festiwal_swiatel.jpg'
+    },
+    {
+      url: 'https://photos.phpdoktor.pl/user/pages/01.home/dziewoklicz_zachod.jpg'
+    },
+    {
+      url: 'https://photos.phpdoktor.pl/user/pages/01.home/memento.jpg'
+    }
+
+  ]
 
 
   return (
