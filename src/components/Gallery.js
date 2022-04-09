@@ -31,7 +31,47 @@ export default function Gallery({items}) {
 
 
         const factor = image.naturalWidth/image.naturalHeight
+        
+        const maxWidth = 0.8 * window.innerWidth
+        const maxHeight = 0.8 * window.innerHeight
 
+        const allowedAreaFactor = maxWidth/maxHeight
+
+        let width = 0
+        let height = 0
+
+        /* to do calculations for perfect width. height of container */
+        
+        if(factor>=1) {
+            width = maxWidth
+            height = width/factor
+
+            if(height>maxHeight) {
+                let fitFactor=height/maxHeight
+                width = width/fitFactor
+                height = height/fitFactor
+            }
+
+        } else {
+            height = maxHeight;
+            width = height*factor
+
+            if(width>maxWidth) {
+                let fitFactor=width/maxWidth
+                width = width/fitFactor
+                height = height/fitFactor
+            }
+        }
+        
+
+
+        parent.style.width = width + 'px'
+        parent.style.height = height + 'px'
+
+
+        
+        /*
+        
         if(factor>=1) {
             parent.style.width = '80vw';
             parent.style.height = (80/factor)+'vw'
@@ -39,6 +79,8 @@ export default function Gallery({items}) {
             parent.style.height = '80vh';
             parent.style.width = (80*factor)+'vh'
         }
+        
+        */
 
         
         

@@ -85,8 +85,7 @@
 .react-gallery .item-popup-content{
     
     display:flex;
-    max-width: 80%;
-    max-height:80%;
+    
     position:relative;
     
 }
@@ -102,7 +101,7 @@
 .react-gallery .title{
     position:absolute;
     color:white;
-    bottom: 17px;
+    bottom: -1.9rem;
 
     text-align: center;
     width: 100%;
