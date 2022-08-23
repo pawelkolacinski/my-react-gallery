@@ -1,6 +1,6 @@
 # Gallery component
 
-Simple grid gallery component
+Simple responsive grid gallery component
 
 Live demo : https://gallery.phpdoktor.pl
 
