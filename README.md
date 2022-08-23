@@ -1,6 +1,7 @@
 # Gallery component
 
 Simple grid gallery component
+
 Live demo : https://gallery.phpdoktor.pl
 
 ## Usage 
