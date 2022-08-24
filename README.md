@@ -1,6 +1,6 @@
 # Gallery component
 
-Simple responsive grid gallery component
+Simple responsive grid gallery component (with Slider on-click)
 
 Live demo : https://gallery.phpdoktor.pl
 
@@ -35,7 +35,7 @@ function App() {
 
 
   return (
-    <div className="App container">
+    <div className="App">
       <Gallery items={images} />  
     </div>
   );
