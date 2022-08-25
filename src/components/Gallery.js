@@ -2,29 +2,29 @@ import './Gallery.css'
 import { useState } from 'react'
 
 export default function Gallery({ items }) {
-  const [selectedItem, setSelectedItem] = useState(null)
+  const [selectedItemId, setselectedItemIdId] = useState(null)
 
   items = items.map((i, index) => {
     return { ...i, id: index }
   })
 
   const changeSlide = (step) => {
-    if (selectedItem === 0 && step === -1) {
-      setSelectedItem(items.length - 1)
+    if (selectedItemId === 0 && step === -1) {
+      setselectedItemIdId(items.length - 1)
       return
     }
-    if (selectedItem === items.length - 1 && step === 1) {
-      setSelectedItem(0)
+    if (selectedItemId === items.length - 1 && step === 1) {
+      setselectedItemIdId(0)
       return
     }
 
-    setSelectedItem(selectedItem + step)
+    setselectedItemIdId(selectedItemId + step)
   }
 
   const handleKeyPress = (e) => {
     if (e.key === 'ArrowRight') changeSlide(1)
     if (e.key === 'ArrowLeft') changeSlide(-1)
-    if (e.key === 'Escape') setSelectedItem(null)
+    if (e.key === 'Escape') setselectedItemIdId(null)
   }
 
   const resizePopupImage = (e) => {
@@ -73,10 +73,11 @@ export default function Gallery({ items }) {
             key={item.id}
             className="item"
             onClick={() => {
-              setSelectedItem(item.id)
+              setselectedItemIdId(item.id)
             }}
           >
             <img
+              alt={item.title}
               className="image"
               src={item.thumb ? item.thumb : item.url}
               loading="lazy"
@@ -89,23 +90,24 @@ export default function Gallery({ items }) {
         ))}
       </div>
 
-      {selectedItem !== null && (
+      {selectedItemId !== null && (
         <div
           className="item-popup"
           onClick={(e) => {
-            if (!e.target.classList.contains('arrow')) setSelectedItem(null)
+            if (!e.target.classList.contains('arrow')) setselectedItemIdId(null)
           }}
           onKeyDown={handleKeyPress}
           tabIndex="0"
         >
           <div className="item-popup-content">
             <img
+              alt={items[selectedItemId].title}
               className="image-popup"
-              src={items[selectedItem].url}
+              src={items[selectedItemId].url}
               onLoad={resizePopupImage}
             />
             <div className="title">
-              {items[selectedItem].title ? items[selectedItem].title : ''}
+              {items[selectedItemId].title ? items[selectedItemId].title : ''}
             </div>
             <span
               className="arrow left"
