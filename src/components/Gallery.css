@@ -1,130 +1,108 @@
-:root{
-    --gallery-columns:4
+:root {
+  --gallery-columns: 4;
 }
 
-
-
-@media (max-width:1200px){
-    :root{
-        --gallery-columns:3
-    }
+@media (max-width: 1200px) {
+  :root {
+    --gallery-columns: 3;
+  }
 }
 
-
-@media (max-width:800px){
-    :root{
-        --gallery-columns:2
-    }
+@media (max-width: 800px) {
+  :root {
+    --gallery-columns: 2;
+  }
 }
 
-
-@media (max-width:400px){
-    :root{
-        --gallery-columns:1
-    }
+@media (max-width: 400px) {
+  :root {
+    --gallery-columns: 1;
+  }
 }
 
-
-:root{
-    --gallery-item-width:calc(100vw/(var(--gallery-columns)));
-    --gallery-item-height:var(--gallery-item-width);
+:root {
+  --gallery-item-width: calc(100vw / (var(--gallery-columns)));
+  --gallery-item-height: var(--gallery-item-width);
 }
 
+.react-gallery .items {
+  display: grid;
+  grid-template-columns: repeat(var(--gallery-columns), 1fr);
 
-.react-gallery .items{
-    display:grid;
-    grid-template-columns: repeat(var(--gallery-columns),1fr);
-    
-    max-width:100vw;
-    
-    gap:0;
+  max-width: 100vw;
 
+  gap: 0;
 }
 
-.react-gallery .item{
-    width:var(--gallery-item-width);
-    height:var(--gallery-item-height);
-    cursor:pointer;
-    
-
+.react-gallery .item {
+  width: var(--gallery-item-width);
+  height: var(--gallery-item-height);
+  cursor: pointer;
 }
 
-
-.react-gallery .item .image{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0; /* initial state */
-    transition: opacity 500ms ease-in;
-    
-
+.react-gallery .item .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* initial state */
+  transition: opacity 500ms ease-in;
 }
-.react-gallery .item .image.loaded{
-    opacity:1
+.react-gallery .item .image.loaded {
+  opacity: 1;
 }
-
-
-
 
 /* image popup*/
 
-.react-gallery .item-popup{
-    position:fixed;
-    left:0;
-    top:0;
-    width:100vw;
-    height:100vh;
-    background-color: rgba(0,0,0,0.5);
-    backdrop-filter: blur(2px);
+.react-gallery .item-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.react-gallery .item-popup-content{
-    
-    display:flex;
-    
-    position:relative;
-    
+.react-gallery .item-popup-content {
+  display: flex;
+
+  position: relative;
 }
 
-.react-gallery .image-popup{
-    width:100%;
-    object-fit: contain;
-    
-    
+.react-gallery .image-popup {
+  width: 100%;
+  object-fit: contain;
 }
 
+.react-gallery .title {
+  position: absolute;
+  color: white;
+  bottom: -1.9rem;
 
-.react-gallery .title{
-    position:absolute;
-    color:white;
-    bottom: -1.9rem;
-
-    text-align: center;
-    width: 100%;
-    font-size:1.5rem;
-    text-transform: capitalize;
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  text-transform: capitalize;
 }
-
 
 /* arrows for slider navigation */
 
-.arrow{
-    position:absolute;
-    top:calc(50% - 25px);
-    cursor:pointer;
-    font-size:50px;
-    color:white;
-
+.arrow {
+  position: absolute;
+  top: calc(50% - 25px);
+  cursor: pointer;
+  font-size: 50px;
+  color: white;
 }
 
-.arrow.left{
-    left:-35px;
+.arrow.left {
+  left: -35px;
 }
 
-.arrow.right{
-    right:-35px;
+.arrow.right {
+  right: -35px;
 }

@@ -4,43 +4,37 @@ Simple responsive grid gallery component (with Slider on-click)
 
 Live demo : https://gallery.phpdoktor.pl
 
-## Usage 
+## Usage
 
 ```javascript
-
-
-import './App.css';
+import './App.css'
 import Gallery from './components/Gallery'
 
 function App() {
-
   const images = [
     {
-    url: 'https://...',
-    thumb: 'https://...',
-    title:  'azoty arena'
-    },
-    {
-      url: 'https://...'
+      url: 'https://...',
+      thumb: 'https://...',
+      title: 'azoty arena',
     },
     {
       url: 'https://...',
-      title: 'Berlin'
     },
     {
-      url: 'https://...'
-    }
-
+      url: 'https://...',
+      title: 'Berlin',
+    },
+    {
+      url: 'https://...',
+    },
   ]
-
 
   return (
     <div className="App">
-      <Gallery items={images} />  
+      <Gallery items={images} />
     </div>
-  );
+  )
 }
 
-export default App;
-
+export default App
 ```
