@@ -34,7 +34,6 @@ export default function Slider({
     [changeSlide, closeSliderHandler]
   )
 
-
   useEffect(() => {
     const currentSlider = slider.current
     currentSlider?.focus()
