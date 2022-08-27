@@ -1,0 +1,53 @@
+.slider .item-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider .item-popup-content {
+  display: flex;
+
+  position: relative;
+}
+
+.slider .image-popup {
+  width: 100%;
+  object-fit: contain;
+}
+
+.slider .title {
+  position: absolute;
+  color: white;
+  bottom: -1.9rem;
+
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+/* arrows for slider navigation */
+
+.slider .arrow {
+  position: absolute;
+  top: calc(50% - 25px);
+  cursor: pointer;
+  font-size: 50px;
+  color: white;
+}
+
+.slider .arrow.left {
+  left: -35px;
+}
+
+.slider .arrow.right {
+  right: -35px;
+}
