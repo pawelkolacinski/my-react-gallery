@@ -15,8 +15,7 @@ export default function Gallery({ items }) {
     }
 
     document.addEventListener('keydown', enterKeyHandler)
-    return document.removeEventListener('keydown', enterKeyHandler)
-
+    return () => document.removeEventListener('keydown', enterKeyHandler)
   }, [])
 
   return (
