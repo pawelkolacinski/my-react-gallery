@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 import './Slider.css'
 
 export default function Slider({
@@ -6,26 +6,41 @@ export default function Slider({
   initialSelectedItemId = 0,
   closeSliderHandler,
 }) {
-  const [selectedItemId, setselectedItemIdId] = useState(initialSelectedItemId)
+  const [selectedItemId, setselectedItemId] = useState(initialSelectedItemId)
+  const slider = useRef(null)
 
-  const changeSlide = (step) => {
-    if (selectedItemId === 0 && step === -1) {
-      setselectedItemIdId(items.length - 1)
-      return
-    }
-    if (selectedItemId === items.length - 1 && step === 1) {
-      setselectedItemIdId(0)
-      return
-    }
+  const changeSlide = useCallback(
+    (step) => {
+      if (selectedItemId === 0 && step === -1) {
+        setselectedItemId(items.length - 1)
+        return
+      }
+      if (selectedItemId === items.length - 1 && step === 1) {
+        setselectedItemId(0)
+        return
+      }
 
-    setselectedItemIdId(selectedItemId + step)
-  }
+      setselectedItemId(selectedItemId + step)
+    },
+    [items.length, selectedItemId]
+  )
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'ArrowRight') changeSlide(1)
-    if (e.key === 'ArrowLeft') changeSlide(-1)
-    if (e.key === 'Escape') closeSliderHandler()
-  }
+  const handleKeyPress = useCallback(
+    (e) => {
+      if (e.key === 'ArrowRight') changeSlide(1)
+      if (e.key === 'ArrowLeft') changeSlide(-1)
+      if (e.key === 'Escape') closeSliderHandler()
+    },
+    [changeSlide, closeSliderHandler]
+  )
+
+  useEffect(() => {
+    const currentSlider = slider.current
+    currentSlider?.focus()
+    currentSlider?.addEventListener('keydown', handleKeyPress)
+
+    return () => currentSlider?.removeEventListener('keydown', handleKeyPress)
+  }, [handleKeyPress])
 
   const resizePopupImage = (e) => {
     const image = e.target
@@ -66,14 +81,12 @@ export default function Slider({
   }
 
   return (
-    <div className="slider">
+    <div className="slider" ref={slider} tabIndex="1">
       <div
         className=" item-popup"
         onClick={(e) => {
           if (!e.target.classList.contains('arrow')) closeSliderHandler()
         }}
-        onKeyDown={handleKeyPress}
-        tabIndex="0"
       >
         <div className="item-popup-content">
           <img
