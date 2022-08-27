@@ -1,13 +1,21 @@
 import './Gallery.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Slider from './Slider'
 
 export default function Gallery({ items }) {
-  const [selectedItemId, setselectedItemIdId] = useState(null)
+  const [selectedItemId, setSelectedItemId] = useState(null)
 
   items = items.map((i, index) => {
     return { ...i, id: index }
   })
+
+  useEffect(() => {
+    const enterKeyHandler = (e) => {
+      if (e.key === 'Enter') setSelectedItemId(0)
+    }
+
+    document.addEventListener('keydown', enterKeyHandler)
+  }, [])
 
   return (
     <div className="react-gallery">
@@ -17,7 +25,7 @@ export default function Gallery({ items }) {
             key={item.id}
             className="item"
             onClick={() => {
-              setselectedItemIdId(item.id)
+              setSelectedItemId(item.id)
             }}
           >
             <img
@@ -38,7 +46,7 @@ export default function Gallery({ items }) {
         <Slider
           items={items}
           initialSelectedItemId={selectedItemId}
-          closeSliderHandler={() => setselectedItemIdId(null)}
+          closeSliderHandler={() => setSelectedItemId(null)}
         />
       )}
     </div>
